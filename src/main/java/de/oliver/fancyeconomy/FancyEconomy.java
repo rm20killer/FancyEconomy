@@ -164,9 +164,9 @@ public class FancyEconomy extends JavaPlugin {
 
     private void registerCommands() {
         CommandAPI.registerCommand(FancyEconomyCMD.class);
-        CommandAPI.registerCommand(PayCMD.class);
+//        CommandAPI.registerCommand(PayCMD.class);
         CommandAPI.registerCommand(BalanceCMD.class);
-        CommandAPI.registerCommand(WithdrawCMD.class);
+//        CommandAPI.registerCommand(WithdrawCMD.class);
         CommandAPI.registerCommand(BalanceTopCMD.class);
         CommandAPI.registerCommand(AddCMD.class);
 
@@ -209,31 +209,6 @@ public class FancyEconomy extends JavaPlugin {
                     })
                     .register();
 
-            // pay command
-            new CommandAPICommand(currency.name())
-                    .withPermission("fancyeconomy." + currency.name())
-                    .withArguments(
-                            new MultiLiteralArgument(null, List.of("pay"))
-                                    .setListed(false)
-                    )
-                    .withArguments(new StringArgument("targetName").includeSuggestions(allPlayersSuggestion), new DoubleArgument("amount", 0.01))
-                    .executesPlayer((sender, args) -> {
-                        baseCMD.pay(sender, (String) args.get(0), (Double) args.get(1));
-                    })
-                    .register();
-
-            // withdraw command
-            new CommandAPICommand(currency.name())
-                    .withPermission("fancyeconomy." + currency.name())
-                    .withArguments(
-                            new MultiLiteralArgument(null, List.of("withdraw"))
-                                    .setListed(false)
-                    )
-                    .withArguments(new DoubleArgument("amount"))
-                    .executesPlayer((sender, args) -> {
-                        baseCMD.withdraw(sender, (Double) args.get(0));
-                    })
-                    .register();
 
             // balancetop command
             new CommandAPICommand(currency.name())
